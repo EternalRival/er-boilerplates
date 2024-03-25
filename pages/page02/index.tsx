@@ -2,16 +2,17 @@ import Head from 'next/head';
 
 import { siteTitle } from '@/app/model/constants';
 import { Page02Page } from '@/pages/page02';
+import { RouteName } from '@/shared/router';
 
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 
-const Page: FC = () => (
-  <>
-    <Head>
-      <title>{`Page 02 | ${siteTitle}`}</title>
-    </Head>
-    <Page02Page />
-  </>
-);
-
-export default Page;
+export default function Page(): ReactNode {
+  return (
+    <>
+      <Head>
+        <title>{`${RouteName.PAGE_02} | ${siteTitle}`}</title>
+      </Head>
+      <Page02Page />
+    </>
+  );
+}

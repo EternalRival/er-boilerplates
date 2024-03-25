@@ -1,9 +1,9 @@
 import { getAnswer, parseApiRequest } from '@/shared/api/hello';
 
 import type { ApiResponse } from '@/shared/api/hello';
-import type { NextApiHandler } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-const handler: NextApiHandler<ApiResponse> = async (req, res) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>): Promise<void> {
   const parsedParams = parseApiRequest(req.query);
 
   if (parsedParams) {
@@ -12,6 +12,4 @@ const handler: NextApiHandler<ApiResponse> = async (req, res) => {
   } else {
     res.status(500).json({ success: false, error: 'Internal server error' });
   }
-};
-
-export default handler;
+}

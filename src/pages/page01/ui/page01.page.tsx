@@ -1,3 +1,5 @@
-import type { FC } from 'react';
+import type { ReactNode } from 'react';
 
-export const Page01Page: FC = () => <h1>Page 01</h1>;
+export function Page01Page(): ReactNode {
+  return <h1>Page 01</h1>;
+}
