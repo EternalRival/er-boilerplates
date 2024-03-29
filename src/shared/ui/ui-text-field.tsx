@@ -37,6 +37,7 @@ export function UiTextField({
         </label>
       )}
       <input
+        id={id}
         type="text"
         className={clsx(
           'h-8 rounded border border-solid border-neutral-300 px-2 outline-none transition-colors invalid:border-rose-500 focus:border-teal-600 focus:shadow',
