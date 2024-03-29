@@ -4,10 +4,9 @@ import Head from 'next/head';
 
 import { FloatingGithubLink } from '@/features/floating-github-link';
 import { NavBar } from '@/features/nav-bar';
-import { routes } from '@/shared/router';
-
-import { getFilteredNavRoutes } from '../lib/get-nav-routes';
-import { metadata, siteTitle } from '../model/constants';
+import { authorGithubUrl, metadata, siteTitle } from '@/shared/model/constants';
+import { RouteName, getFilteredRoutes } from '@/shared/router';
+import { UiAnchor, UiHeader } from '@/shared/ui';
 
 import type { ReactNode } from 'react';
 
@@ -17,7 +16,7 @@ const roboto = Roboto({ weight: ['400', '500'], subsets: ['latin', 'cyrillic'] }
 
 export function Layout({ children }: Props): ReactNode {
   return (
-    <div className={clsx(roboto.className, 'flex min-h-screen bg-color2')}>
+    <div className={clsx(roboto.className, 'flex min-h-screen flex-col bg-color2')}>
       <Head>
         <link
           rel="icon"
@@ -37,11 +36,18 @@ export function Layout({ children }: Props): ReactNode {
         ))}
         <title>{siteTitle}</title>
       </Head>
-      <header className="flex shrink-0 items-center bg-color1 shadow-[0_0_10px_-5px]">
-        <NavBar routes={getFilteredNavRoutes(routes)} />
+
+      <UiHeader className="z-10 bg-color1 shadow-[0_0_10px_-5px]">
+        <UiAnchor href={authorGithubUrl}>@EternalRival</UiAnchor>
         <FloatingGithubLink />
-      </header>
-      <main className="flex grow flex-col items-center justify-center p-4">{children}</main>
+      </UiHeader>
+
+      <main className="flex grow">
+        <aside className="flex shrink-0 items-center bg-color1 shadow-[0_0_10px_-5px]">
+          <NavBar routes={getFilteredRoutes((name) => RouteName.HOME !== name)} />
+        </aside>
+        <div className="flex grow flex-col items-center justify-center p-4">{children}</div>
+      </main>
     </div>
   );
 }

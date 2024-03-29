@@ -1,1 +1,1 @@
-export * from './ui/floating-github-link';
+export { FloatingGithubLink } from './ui/floating-github-link';
