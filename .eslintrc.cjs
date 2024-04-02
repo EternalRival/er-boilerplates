@@ -24,6 +24,7 @@ const config = {
     '@typescript-eslint/consistent-type-exports': ['error', { fixMixedExportsWithInlineTypeSpecifier: true }],
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: { attributes: false } }],
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': ['error', { unnamedComponents: 'arrow-function' }],
     'curly': ['error', 'all'],
