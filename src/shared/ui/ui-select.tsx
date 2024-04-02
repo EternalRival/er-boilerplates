@@ -8,17 +8,19 @@ type SelectOption = Readonly<{
   value: string;
 }>;
 
-type Props = Readonly<
-  {
-    containerClassName?: string;
-    labelClassName?: string;
-    errorClassName?: string;
-    label?: string;
-    error?: string;
-    noJumpingErrors?: true;
-    selectOptions: SelectOption[];
-  } & SelectHTMLAttributes<HTMLSelectElement>
->;
+type Props = Readonly<{
+  containerClassName?: string;
+
+  label?: string;
+  labelClassName?: string;
+
+  noJumpingErrors?: true;
+  error?: string;
+  errorClassName?: string;
+
+  selectOptions: SelectOption[];
+  selectProps: SelectHTMLAttributes<HTMLSelectElement>;
+}>;
 
 function buildOptions(options: SelectOption[]): ReactNode[] {
   return options.map(({ label, value }) => (
@@ -33,14 +35,16 @@ function buildOptions(options: SelectOption[]): ReactNode[] {
 
 export function UiSelect({
   containerClassName,
+
   labelClassName,
-  errorClassName,
   label,
-  error,
+
+  errorClassName,
   noJumpingErrors,
+  error,
+
   selectOptions,
-  className,
-  ...selectProps
+  selectProps: { className, ...selectProps },
 }: Props): ReactNode {
   const id = useId();
 

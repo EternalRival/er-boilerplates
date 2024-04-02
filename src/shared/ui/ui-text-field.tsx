@@ -5,31 +5,35 @@ import type { InputHTMLAttributes, ReactNode } from 'react';
 
 type InputAttributes = InputHTMLAttributes<HTMLInputElement>;
 
-type Props = Readonly<
-  {
-    containerClassName?: string;
-    labelClassName?: string;
-    errorClassName?: string;
-    label?: string;
-    error?: string;
-    noJumpingErrors?: true;
-    type?: Extract<InputAttributes['type'], 'text' | 'number'>;
-  } & Omit<InputAttributes, 'type'>
->;
+type Props = Readonly<{
+  containerClassName?: string;
+
+  label?: ReactNode;
+  labelClassName?: string;
+
+  noJumpingErrors?: true;
+  error?: ReactNode;
+  errorClassName?: string;
+
+  inputProps?: Omit<InputAttributes, 'id' | 'type'> & { type?: 'text' | 'number' };
+}>;
 
 const typeNumberReset =
   '[appearance:textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none';
 
+const defaultInputProps = { type: 'text' } as const;
+
 export function UiTextField({
   containerClassName,
+
   labelClassName,
-  errorClassName,
   label,
-  error,
+
+  errorClassName,
   noJumpingErrors,
-  type = 'text',
-  className,
-  ...inputProps
+  error,
+
+  inputProps: { type = defaultInputProps.type, className, ...inputProps } = defaultInputProps,
 }: Props): ReactNode {
   const id = useId();
 
