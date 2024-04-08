@@ -28,6 +28,7 @@ const config = {
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': ['error', { unnamedComponents: 'arrow-function' }],
     'curly': ['error', 'all'],
+    'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
     'import/no-cycle': 'error',
     'jsx-a11y/label-has-associated-control': 'off', // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/966
 
